@@ -4,10 +4,7 @@
         [hiccup.page :only [include-css html5]]))
 
 
-(defpage "/welcome" []
-         (common/layout
-           [:p "Welcome to webanagrm"]))
-
-
 (defpage "/" []
-  (common/layout [:h1 "This is my first page!"]))
+  (common/layout
+   [:h1 "webanagrm"]
+   [:p "This will be a thing that solves Target puzzles"]))

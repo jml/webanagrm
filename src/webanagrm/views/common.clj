@@ -8,7 +8,8 @@
 ;; navbar from the bootstrap starter template
 (defn navbar
   "Navigation bar from bootstrap starter template"
-  []
+  ;; XXX: Parametrize with links
+  [project-name]
   (html
    [:div.navbar.navbar-fixed-top
     [:div.navbar-inner
@@ -17,7 +18,7 @@
        [:span.icon-bar]
        [:span.icon-bar]
        [:span.icon-bar]]
-      [:a.brand {:href "#"} "Project name"]
+      [:a.brand {:href "#"} project-name]
       [:div.nav-collapse
        [:ul.nav
         [:li.active [:a {:href "#"} "Home"]]
@@ -48,5 +49,5 @@
     [:style "body { padding-top: 60px; padding-bottom: 40px;}"]
     ]
    [:body
-    (navbar)
+    (navbar "webanagrm")
     (fixed-layout content)]))

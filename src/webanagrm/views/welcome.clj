@@ -12,6 +12,12 @@
   (with-open [dict (reader dictionary-file)]
     (doall (filter (smh-target-puzzle word (first letter) 4) (line-seq dict)))))
 
+;; XXX - handle empty results
+;; XXX - ensure the compulsory letter is in the word
+;;
+;; XXX - really, the HTML here doesn't need to be in Clojure -- it's just
+;; static HTML.  I wonder if there's a way to serve HTML via noir. (I guess I
+;; could just make the front-end a separate app)
 
 (defpartial puzzle-fields [{:keys [word letter]}]
   (label "word" "Letters in the puzzle: ")

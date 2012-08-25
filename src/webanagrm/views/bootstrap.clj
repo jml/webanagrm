@@ -1,4 +1,4 @@
-(ns webanagrm.views.common
+(ns webanagrm.views.bootstrap
   (:use [noir.core :only [defpartial]]
         [hiccup.core :only [html]]
         [hiccup.page :only [include-css include-js html5]])

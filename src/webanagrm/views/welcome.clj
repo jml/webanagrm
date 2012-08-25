@@ -1,5 +1,5 @@
 (ns webanagrm.views.welcome
-  (:require [webanagrm.views.common :as common]
+  (:require [webanagrm.views.bootstrap :as bootstrap]
             [noir.core :refer [defpage defpartial]]
             [hiccup.page :refer [include-js]]
             [hiccup.form :refer [label text-field form-to submit-button]]))
@@ -19,7 +19,7 @@
   (text-field "letter" letter))
 
 (defpage "/" {:as puzzle}
-  (common/layout
+  (bootstrap/layout
    [:h1 "webanagrm"]
    [:p "Solve a classic 9 letter puzzle"]
    (form-to {:id "puzzle"} [:get "/"]

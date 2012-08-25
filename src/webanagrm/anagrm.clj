@@ -13,7 +13,9 @@
   (every? #(>= (get a (key %) -1) (val %)) b))
 
 (defn sub-anagram? [base-word sub-word]
-  (sub-frequency? (frequencies (lower-case base-word)) (frequencies (lower-case sub-word))))
+  (sub-frequency?
+   (frequencies (lower-case base-word))
+   (frequencies (lower-case sub-word))))
 
 (defn find-anagrams [base-word word-list]
   (filter (partial anagram? base-word) word-list))

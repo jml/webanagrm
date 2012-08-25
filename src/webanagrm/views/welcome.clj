@@ -4,7 +4,7 @@
             [clojure.java.io :refer [reader]]
             [noir.core :refer [defpage defpartial]]
             [noir.response :refer [json]]
-            [hiccup.page :refer [include-css include-js html5]]
+            [hiccup.page :refer [include-js]]
             [hiccup.form :refer [label text-field form-to submit-button]]))
 
 
@@ -19,20 +19,6 @@
   (label "letter" "The compulsory letter: ")
   (text-field "letter" letter))
 
-
-(defpartial named-list [name items]
-  [:h2 name]
-  ;; XXX - use hiccup.element.unordered-list
-  [:ul (for [item items] [:li item])])
-
-
-(defpartial solutions [{:keys [word letter]}]
-  (named-list "Solutions" (solve-puzzle word letter)))
-
-;; XXX - handle empty results
-;; XXX - ensure the compulsory letter is in the word
-
-
 (defpage "/" {:as puzzle}
   (common/layout
    [:h1 "webanagrm"]
@@ -40,9 +26,7 @@
    (form-to {:id "puzzle"} [:get "/"]
             (puzzle-fields puzzle)
             (submit-button "Solve the puzzle!"))
-   [:div#solutions
-    (if (not (empty? puzzle))
-      (solutions puzzle))]
+   [:div#solutions]
    (include-js "js/anagrm.js")))
 
 

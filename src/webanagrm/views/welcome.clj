@@ -1,11 +1,11 @@
 (ns webanagrm.views.welcome
   (:require [webanagrm.views.common :as common]
             [webanagrm.anagrm :refer [smh-target-puzzle dictionary-file]]
-            [clojure.java.io :refer [reader]])
-  (:use [noir.core :only [defpage defpartial]]
-        [noir.response :only [json]]
-        [hiccup.page :only [include-css html5]]
-        [hiccup.form :only [label text-field form-to submit-button]]))
+            [clojure.java.io :refer [reader]]
+            [noir.core :refer [defpage defpartial]]
+            [noir.response :refer [json]]
+            [hiccup.page :refer [include-css html5]]
+            [hiccup.form :refer [label text-field form-to submit-button]]))
 
 
 (defpartial puzzle-fields [{:keys [word letter]}]

@@ -28,3 +28,7 @@
             min-length)
         (contains? (set %) compulsory-letter)
         (sub-anagram? letters %)))
+
+(defn solve-puzzle [word letter]
+  (with-open [dict (reader dictionary-file)]
+    (doall (filter (smh-target-puzzle word (first letter) 4) (line-seq dict)))))

@@ -13,6 +13,10 @@
    [:p "This will be a thing that solves Target puzzles"]))
 
 
+;; XXX - Put this in a form
+;; XXX - AJAX thing to render
+;; XXX - does it stream? how can I make it stream?
 (defpage [:get "/search"] {:keys [word letter]}
   (with-open [dict (reader dictionary-file)]
     (doall (json (filter (smh-target-puzzle word (first letter) 4) (line-seq dict))))))
+

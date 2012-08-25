@@ -4,7 +4,7 @@
             [clojure.java.io :refer [reader]]
             [noir.core :refer [defpage defpartial]]
             [noir.response :refer [json]]
-            [hiccup.page :refer [include-css html5]]
+            [hiccup.page :refer [include-css include-js html5]]
             [hiccup.form :refer [label text-field form-to submit-button]]))
 
 
@@ -22,6 +22,7 @@
 
 (defpartial named-list [name items]
   [:h2 name]
+  ;; XXX - use hiccup.element.unordered-list
   [:ul (for [item items] [:li item])])
 
 
@@ -31,18 +32,20 @@
 ;; XXX - handle empty results
 ;; XXX - ensure the compulsory letter is in the word
 
+
 (defpage "/" {:as puzzle}
   (common/layout
    [:h1 "webanagrm"]
    [:p "Solve a classic 9 letter puzzle"]
-   (form-to [:get "/"]
+   (form-to {:id "puzzle"} [:get "/"]
             (puzzle-fields puzzle)
             (submit-button "Solve the puzzle!"))
-   (if (not (empty? puzzle))
-     (solutions puzzle))))
+   [:div#solutions
+    (if (not (empty? puzzle))
+      (solutions puzzle))]
+   (include-js "js/anagrm.js")))
 
 
-;; XXX - AJAX thing to render
 ;; XXX - does it stream? how can I make it stream?
 (defpage [:get "/search"] {:keys [word letter]}
   (json (solve-puzzle word letter)))

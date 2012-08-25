@@ -1,7 +1,7 @@
 (ns webanagrm.views.common
   (:use [noir.core :only [defpartial]]
         [hiccup.core :only [html]]
-        [hiccup.page :only [include-css html5]])
+        [hiccup.page :only [include-css include-js html5]])
   (:require [hiccup.bootstrap.page :refer [include-bootstrap fixed-layout]]))
 
 
@@ -44,6 +44,7 @@
     [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0"}]
     [:meta {:name "description" :content ""}]
     [:meta {:name "author" :content ""}]
+    (include-js "https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js")
     (include-bootstrap)
     ie-html5-shim
     [:style "body { padding-top: 60px; padding-bottom: 40px;}"]

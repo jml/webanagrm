@@ -20,12 +20,6 @@
   (text-field "letter" letter))
 
 
-(defpage "/" []
-  (common/layout
-   [:h1 "webanagrm"]
-   [:p "This will be a thing that solves Target puzzles"]))
-
-
 (defpartial named-list [name items]
   [:h2 name]
   [:ul (for [item items] [:li item])])
@@ -35,9 +29,11 @@
   (named-list "Solutions" (solve-puzzle word letter)))
 
 
-(defpage "/puzzle" {:as puzzle}
+(defpage "/" {:as puzzle}
   (common/layout
-   (form-to [:get "/puzzle"]
+   [:h1 "webanagrm"]
+   [:p "Solve a classic 9 letter puzzle"]
+   (form-to [:get "/"]
             (puzzle-fields puzzle)
             (submit-button "Solve the puzzle!"))
    (if (not (empty? puzzle))

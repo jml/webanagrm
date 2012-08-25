@@ -8,6 +8,11 @@
             [hiccup.form :refer [label text-field form-to submit-button]]))
 
 
+(defn solve-puzzle [word letter]
+  (with-open [dict (reader dictionary-file)]
+    (doall (filter (smh-target-puzzle word (first letter) 4) (line-seq dict)))))
+
+
 (defpartial puzzle-fields [{:keys [word letter]}]
   (label "word" "Letters in the puzzle: ")
   (text-field "word" word)
@@ -21,12 +26,22 @@
    [:p "This will be a thing that solves Target puzzles"]))
 
 
-;; XXX - form doesn't look super-great.
-(defpage "/puzzle" []
+(defpartial named-list [name items]
+  [:h2 name]
+  [:ul (for [item items] [:li item])])
+
+
+(defpartial solutions [{:keys [word letter]}]
+  (named-list "Solutions" (solve-puzzle word letter)))
+
+
+(defpage "/puzzle" {:as puzzle}
   (common/layout
-   (form-to [:get "/search"]
-            (puzzle-fields {})
-            (submit-button "Solve the puzzle!"))))
+   (form-to [:get "/puzzle"]
+            (puzzle-fields puzzle)
+            (submit-button "Solve the puzzle!"))
+   (if (not (empty? puzzle))
+     (solutions puzzle))))
 
 
 ;; XXX - AJAX thing to render

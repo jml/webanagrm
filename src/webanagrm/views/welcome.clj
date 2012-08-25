@@ -28,6 +28,8 @@
 (defpartial solutions [{:keys [word letter]}]
   (named-list "Solutions" (solve-puzzle word letter)))
 
+;; XXX - handle empty results
+;; XXX - ensure the compulsory letter is in the word
 
 (defpage "/" {:as puzzle}
   (common/layout
